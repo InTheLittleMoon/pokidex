@@ -1,4 +1,6 @@
 import React from "react";
+import Sidebar from  "./Sidebar.js";
+import Main from  "./Main.js";
 import "./App.css";
 
 function App() {
@@ -12,7 +14,12 @@ function App() {
   }
   pokiFetch();
 
-  return <div>Hi Baby</div>;
+  return (
+    <>
+      <Sidebar />
+      <Main />
+    </>
+  );
 }
 
 export default App;
