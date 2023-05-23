@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
+import Display from "./Display.js"
 import "./App.css";
 
 function App() {
@@ -24,10 +25,11 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="App">
       <Sidebar pokiArray={pokiArray} />
       <Main pokiArray={pokiArray} />
-    </>
+      <Display />
+    </div>
   );
 }
 
