@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from  "./Sidebar.js";
 import Main from  "./Main.js";
+import Display from "./Display.js"
 import "./App.css";
 
 function App() {
@@ -15,10 +16,11 @@ function App() {
   pokiFetch();
 
   return (
-    <>
+    <div className="App">
       <Sidebar />
       <Main />
-    </>
+      <Display />
+    </div>
   );
 }
 
