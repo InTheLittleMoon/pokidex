@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
-import Display from "./Display.js"
+import Display from "./Display.js";
 import "./App.css";
 
 function App() {
@@ -19,9 +19,20 @@ function App() {
     setPokiArray(pokiBox);
   }
 
+  async function pokiOverFetch() {
+    //add number to end of fetch string for individual pokemon
+    let pokiBox = fetch("https://pokeapi.co/api/v2/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    return pokiBox;
+  }
+
   //starts the nonsense
   useEffect(() => {
     pokiFetch();
+    pokiOverFetch();
   }, []);
 
   return (
