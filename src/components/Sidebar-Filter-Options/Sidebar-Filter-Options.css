@@ -1,0 +1,31 @@
+.sidebar-filter-option {
+  margin: 2%;
+  padding: 2% 1.5%;
+  width: 40%;
+  border-radius: 10px;
+  background-color: aqua;
+}
+
+.green {
+  background-color: #2bdab1;
+}
+
+.red {
+  background-color: #f7776a;
+}
+
+.blue {
+  background-color: #58abf7;
+}
+
+.yellow {
+  background-color: #ffce4b;
+}
+
+.purple {
+  background-color: #9e5bba;
+}
+
+.tan {
+  background-color: #ca817a;
+}

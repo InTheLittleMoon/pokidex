@@ -8,6 +8,16 @@ function App() {
   //held states
   const [pokiArray, setPokiArray] = useState([]);
 
+  async function pokiOverFetch() {
+    //add number to end of fetch string for individual pokemon
+    let pokiBox = fetch("https://pokeapi.co/api/v2/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    return pokiBox;
+  }
+
   async function pokiFetch() {
     //add number to end of fetch string for individual pokemon
     let pokiBox = fetch("https://pokeapi.co/api/v2/pokemon/")
@@ -17,16 +27,6 @@ function App() {
       });
 
     setPokiArray(pokiBox);
-  }
-
-  async function pokiOverFetch() {
-    //add number to end of fetch string for individual pokemon
-    let pokiBox = fetch("https://pokeapi.co/api/v2/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-    return pokiBox;
   }
 
   //starts the nonsense
