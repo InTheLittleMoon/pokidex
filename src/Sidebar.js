@@ -6,8 +6,9 @@ import magnifyingGlassIcon from "./assets/images/sidebar-searchbar-icon.png";
 
 //components
 import FilterOption from "./components/Sidebar-Filter-Options/Sidebar-Filter-Options";
+import RandomDisplayedPokemon from "./components/Random-Displayed-Pokemon/Random-Displayed-Pokemon";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   return (
     <div className="sidebar-container">
       <div className="sidebar-searchbar-container">
@@ -34,6 +35,7 @@ export default function Sidebar() {
           <FilterOption color={5} name={"Type Charts"} />
         </div>
       </div>
+      <RandomDisplayedPokemon pokiArray={props.pokiArray} />
     </div>
   );
 }
