@@ -8,7 +8,7 @@ import magnifyingGlassIcon from "./assets/images/sidebar-searchbar-icon.png";
 import FilterOption from "./components/Sidebar-Filter-Options/Sidebar-Filter-Options";
 import RandomDisplayedPokemon from "./components/Random-Displayed-Pokemon/Random-Displayed-Pokemon";
 
-export default function Sidebar(props) {
+export default function Sidebar({ pokiArray, search, handleInput }) {
   return (
     <div className="sidebar-container">
       <div className="sidebar-searchbar-container">
@@ -18,7 +18,10 @@ export default function Sidebar(props) {
         </h1>
         <div className="searchbar">
           <img alt="search" src={magnifyingGlassIcon}></img>
-          <input placeholder="Search Pokémon, Moves, Abilities, etc"></input>
+          <input
+            placeholder="Search Pokémon, Moves, Abilities, etc"
+            onChange={(e) => handleInput(e.target.value)}
+          ></input>
         </div>
       </div>
       <div className="sidebar-filters-container">
@@ -35,7 +38,7 @@ export default function Sidebar(props) {
           <FilterOption color={5} name={"Type Charts"} />
         </div>
       </div>
-      <RandomDisplayedPokemon pokiArray={props.pokiArray} />
+      <RandomDisplayedPokemon pokiArray={pokiArray} />
     </div>
   );
 }

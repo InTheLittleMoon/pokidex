@@ -7,39 +7,62 @@ import "./App.css";
 function App() {
   //held states
   const [pokiArray, setPokiArray] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [timer, setTimer] = useState(null);
 
-  async function pokiOverFetch() {
-    //add number to end of fetch string for individual pokemon
-    let pokiBox = fetch("https://pokeapi.co/api/v2/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-    return pokiBox;
-  }
+  useEffect(() => {}, []);
+
+  // async function pokiOverFetch() {
+  //   //add number to end of fetch string for individual pokemon
+  //   let pokiBox = fetch("https://pokeapi.co/api/v2/")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log("This is Data from PokiOverFetch: ", data);
+  //     });
+  //   return pokiBox;
+  // }
 
   async function pokiFetch() {
     //add number to end of fetch string for individual pokemon
-    let pokiBox = fetch("https://pokeapi.co/api/v2/pokemon/")
+    let pokiBox = await fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+      .then((data) => data);
 
-    setPokiArray(pokiBox);
+    setPokiArray(pokiBox.results);
   }
+
+  //currently only finds exact matches, should change that **eventually**
+  const handleInput = (query) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    // will only query after 1 second has passed since typing
+    setTimer(
+      setTimeout(() => {
+        pokiArray.filter((pokemon) => {
+          if (query.toUpperCase() === pokemon.name.toUpperCase()) {
+            // can expand object as needed in the future (with moves, types, abilities...etc)
+            const pokemonObject = {
+              name: pokemon.name,
+            };
+            setSelectedPokemon(pokemonObject);
+          }
+        });
+      }, 1000)
+    );
+  };
 
   //starts the nonsense
   useEffect(() => {
     pokiFetch();
-    pokiOverFetch();
+    // pokiOverFetch();
   }, []);
 
   return (
     <div className="App">
-      <Sidebar pokiArray={pokiArray} />
+      <Sidebar pokiArray={pokiArray} handleInput={handleInput} />
       <Main pokiArray={pokiArray} />
-      <Display />
+      <Display selectedPokemon={selectedPokemon} />
     </div>
   );
 }
