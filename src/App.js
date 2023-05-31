@@ -9,26 +9,47 @@ function App() {
   const [pokiArray, setPokiArray] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
+  const [randomDisplayedPokemon, setRandomDisplayedPokemon] = useState([]);
 
-  useEffect(() => {}, []);
+  async function fetchKantoPokemon() {
+    //limited to the first 151
+    await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .then((response) => response.json())
+      .then((allpokemon) => {
+        allpokemon.results.forEach((pokemon) => {
+          fetchPokemonData(pokemon);
+        });
+      });
+  }
 
-  // async function pokiOverFetch() {
-  //   //add number to end of fetch string for individual pokemon
-  //   let pokiBox = fetch("https://pokeapi.co/api/v2/")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log("This is Data from PokiOverFetch: ", data);
-  //     });
-  //   return pokiBox;
-  // }
+  async function fetchPokemonData(pokemon) {
+    let url = pokemon.url;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((pokeData) => {
+        renderPokemon(pokeData);
+      });
+  }
 
-  async function pokiFetch() {
-    //add number to end of fetch string for individual pokemon
-    let pokiBox = await fetch("https://pokeapi.co/api/v2/pokemon/")
-      .then((res) => res.json())
-      .then((data) => data);
+  function renderPokemon(pokeData) {
+    //should handle image distro
+    getPokeImage(pokeData.id);
+    // helper function to go through the types array
+    getTypes(pokeData.types);
+  }
 
-    setPokiArray(pokiBox.results);
+  function getTypes(types) {
+    //should pass data to component alongside image
+    types.forEach((type) => {
+      return;
+    });
+  }
+
+  function getPokeImage(pokeID) {
+    //gets base image
+    let srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`;
+    // setRandomDisplayedPokemon();
+    // console.log(randomDisplayedPokemon);
   }
 
   //currently only finds exact matches, should change that **eventually**
@@ -54,8 +75,7 @@ function App() {
 
   //starts the nonsense
   useEffect(() => {
-    pokiFetch();
-    // pokiOverFetch();
+    fetchKantoPokemon();
   }, []);
 
   return (
