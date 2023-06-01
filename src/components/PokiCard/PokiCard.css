@@ -1,0 +1,30 @@
+.pokicard-container {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 5vh;
+  margin: 1.8%;
+  padding: 2% 1.5%;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.upper-pokicard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.lower-pokicard {
+  display: flex;
+}
+
+.poki-typings-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* poki-typing background color should be based on types */
+.poki-typing {
+  list-style-type: none;
+}
