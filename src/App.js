@@ -7,28 +7,33 @@ import "./App.css";
 function App() {
   //held states
   const [pokiArray, setPokiArray] = useState([]);
+  const [filteredPokiArray, setFilteredPokiArray] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
   const [randomDisplayedPokemon, setRandomDisplayedPokemon] = useState([]);
 
   async function fetchKantoPokemon() {
     //limited to the first 151
-    await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+    const pokemonArray = await fetch(
+      "https://pokeapi.co/api/v2/pokemon?limit=151"
+    )
       .then((response) => response.json())
       .then((allpokemon) => {
-        allpokemon.results.forEach((pokemon) => {
-          fetchPokemonData(pokemon);
-        });
+        return [...allpokemon.results];
       });
-  }
-
-  async function fetchPokemonData(pokemon) {
-    let url = pokemon.url;
-    await fetch(url)
-      .then((response) => response.json())
-      .then((pokeData) => {
-        renderPokemon(pokeData);
-      });
+    Promise.all(
+      pokemonArray.map((pokemon) => {
+        let url = pokemon.url;
+        return fetch(url)
+          .then((response) => response.json())
+          .then((pokeData) => {
+            return { ...pokemon, ...pokeData };
+          });
+      })
+    ).then((results) => {
+      setPokiArray(results);
+      setFilteredPokiArray(results);
+    });
   }
 
   function renderPokemon(pokeData) {
@@ -60,15 +65,20 @@ function App() {
     // will only query after 1 second has passed since typing
     setTimer(
       setTimeout(() => {
-        pokiArray.filter((pokemon) => {
-          if (query.toUpperCase() === pokemon.name.toUpperCase()) {
-            // can expand object as needed in the future (with moves, types, abilities...etc)
-            const pokemonObject = {
-              name: pokemon.name,
-            };
-            setSelectedPokemon(pokemonObject);
-          }
-        });
+        setFilteredPokiArray(
+          pokiArray.filter((pokemon) => {
+            console.log(
+              "query",
+              query.toUpperCase(),
+              pokemon.name.toUpperCase()
+            );
+            if (query.toUpperCase() === pokemon.name.toUpperCase()) {
+              return {
+                name: pokemon.name,
+              };
+            }
+          })
+        );
       }, 1000)
     );
   };
@@ -78,11 +88,12 @@ function App() {
     fetchKantoPokemon();
   }, []);
 
+  console.log("pokeArray", pokiArray);
   return (
     <div className="App">
       <Sidebar pokiArray={pokiArray} handleInput={handleInput} />
-      <Main pokiArray={pokiArray} />
-      <Display selectedPokemon={selectedPokemon} />
+      <Main filteredPokiArray={filteredPokiArray} />
+      <Display selectedPokemon={filteredPokiArray} />
     </div>
   );
 }

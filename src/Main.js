@@ -4,11 +4,12 @@ import "./Main.css";
 //components
 import PokiCard from "./components/PokiCard/PokiCard";
 
-export default () => {
+export default ({ filteredPokiArray }) => {
   return (
-      <div className="main-container">
-        <PokiCard />
-        <PokiCard />
-      </div>
+    <div className="main-container">
+      {filteredPokiArray.map((pokemon) => (
+        <PokiCard pokemon={pokemon} />
+      ))}
+    </div>
   );
 };

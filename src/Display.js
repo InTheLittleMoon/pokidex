@@ -1,8 +1,9 @@
 import React from "react";
+import PokeCard from "./components/PokiCard/PokiCard";
 
 export default function Display({ selectedPokemon }) {
   if (selectedPokemon) {
-    return <div className="display">{selectedPokemon.name}</div>;
+    return <PokeCard />;
   }
   return <div className="display">None Selected</div>;
 }
