@@ -6,8 +6,9 @@ import PokiCard from "./components/PokiCard/PokiCard";
 
 export default () => {
   return (
-    <div className="main-container">
-      <PokiCard />
-    </div>
+      <div className="main-container">
+        <PokiCard />
+        <PokiCard />
+      </div>
   );
 };
