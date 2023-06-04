@@ -2,24 +2,30 @@ import React from "react";
 import "./PokiCard.css";
 
 export default function PokiCard() {
-  let temp = ["Fire", "Water"];
+  //temp for pkTypings array displayed on card
+  let temp = ["Grass", "Poison"];
   return (
-    <div className="pokicard-container">
+    <div className="pokicard-container grass">
       <div className="upper-pokicard">
         {/* should recieve name from fetch */}
-        <h3>Bulbasaur</h3>
+        <div className="pkName">Bulbasaur</div>
         {/* should recieve id from fetch */}
-        <h3>#001</h3>
+        <div className="pkID">#001</div>
       </div>
       <div className="lower-pokicard">
         <div className="poki-typings-container">
           {/* should recieve types from fetch */}
           {temp.map((type) => {
-            return <li className="poki-typing">{type}</li>;
+            return <li className="poki-typing grassTwo">{type}</li>;
           })}
         </div>
         {/* should recieve image from fetch */}
-        <img alt="poki" src="IMAGEHERE"></img>
+        <div className="poki-image-container">
+          <img
+            alt="poki"
+            src="https://www.icons101.com/icon_ico/id_60322/303_Mawile.ico"
+          ></img>
+        </div>
       </div>
     </div>
   );

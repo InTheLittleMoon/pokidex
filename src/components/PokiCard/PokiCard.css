@@ -2,29 +2,115 @@
   display: flex;
   flex-direction: column;
   width: 45%;
-  height: 5vh;
+  height: 17vh;
   margin: 1.8%;
-  padding: 2% 1.5%;
+  padding: 3%;
   border-radius: 10px;
-  border: 1px solid black;
+  color: #fff;
 }
 
 .upper-pokicard {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  font-size: large;
+  font-weight: bold;
+}
+
+.pkID {
+  color: #21c19d !important;
 }
 
 .lower-pokicard {
   display: flex;
+  flex-grow: 2;
 }
 
 .poki-typings-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  width: 40%;
 }
 
 /* poki-typing background color should be based on types */
 .poki-typing {
   list-style-type: none;
+  width: fit-content;
+  margin-top: 5%;
+  padding: 5% 15%;
+  border-radius: 10px;
+}
+
+.poki-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.poki-image-container img {
+  height: 14vh;
+}
+/* all master typing colors */
+/*
+18 total('/' on each color finished):
+Normal
+Fire /
+Water/
+Grass/
+Electric/
+Ice
+Fighting
+Poison/
+Ground/
+Flying
+Psychic
+Bug
+Rock
+Ghost
+Dark
+Dragon
+Steel
+Fairy
+*/
+
+/* keep alphabetical you madman */
+
+/* all typings will have sets of three colors:
+ one for the card's background(eg: grass), 
+ font color(eg: grassTwo) for individual 
+ ID based off primary typing, and 
+ typing background(eg: grassThree) */
+
+.electric {
+  background-color: #ffce4b;
+}
+
+.fire {
+  background-color: #f7776a;
+}
+
+.grass {
+  background-color: #2bdab1;
+}
+
+.grassTwo {
+  background-color: #62e5c6;
+}
+
+.grassThree {
+  color: #20c09c;
+}
+
+.ground {
+  background-color: #ca817a;
+}
+
+.poison {
+  background-color: #9e5bba;
+}
+
+.water {
+  background-color: #58abf7;
 }
