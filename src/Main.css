@@ -3,4 +3,5 @@
   flex-wrap: wrap;
   height: 100vh;
   width: 40vw;
+  overflow-y: scroll;
 }
