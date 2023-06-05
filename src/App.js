@@ -10,7 +10,6 @@ function App() {
   const [filteredPokiArray, setFilteredPokiArray] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
-  const [randomDisplayedPokemon, setRandomDisplayedPokemon] = useState([]);
 
   async function fetchKantoPokemon() {
     //limited to the first 151
@@ -34,27 +33,6 @@ function App() {
       setPokiArray(results);
       setFilteredPokiArray(results);
     });
-  }
-
-  function renderPokemon(pokeData) {
-    //should handle image distro
-    getPokeImage(pokeData.id);
-    // helper function to go through the types array
-    getTypes(pokeData.types);
-  }
-
-  function getTypes(types) {
-    //should pass data to component alongside image
-    types.forEach((type) => {
-      return;
-    });
-  }
-
-  function getPokeImage(pokeID) {
-    //gets base image
-    let srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`;
-    // setRandomDisplayedPokemon();
-    // console.log(randomDisplayedPokemon);
   }
 
   //currently only finds exact matches, should change that **eventually**

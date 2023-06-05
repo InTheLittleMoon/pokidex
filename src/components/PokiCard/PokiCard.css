@@ -17,10 +17,6 @@
   font-weight: bold;
 }
 
-.pkID {
-  color: #21c19d !important;
-}
-
 .lower-pokicard {
   display: flex;
   flex-grow: 2;
@@ -96,11 +92,11 @@ Fairy
 }
 
 .grassTwo {
-  background-color: #62e5c6;
+  color: #20c09c;
 }
 
 .grassThree {
-  color: #20c09c;
+  background-color: #62e5c6;
 }
 
 .ground {

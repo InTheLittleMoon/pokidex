@@ -3,23 +3,21 @@ import "./PokiCard.css";
 
 export default function PokiCard({ pokemon }) {
   if (!pokemon) return null;
-  //temp for pkTypings array displayed on card
   return (
+    /* needs to dynamically add background color based off primary typing */
     <div className="pokicard-container grass">
       <div className="upper-pokicard">
-        {/* should recieve name from fetch */}
         <div className="pkName">{pokemon.name}</div>
-        {/* should recieve id from fetch */}
-        <div className="pkID">{pokemon.id}</div>
+        {/* needs to dynamically add font color based off primary typing */}
+        <div className="pkID grassTwo">{pokemon.id}</div>
       </div>
       <div className="lower-pokicard">
         <div className="poki-typings-container">
-          {/* should recieve types from fetch */}
           {pokemon.types.map((type) => {
-            return <li className="poki-typing grassTwo">{type.type.name}</li>;
+            /* needs to dynamically add background color based off primary typing */
+            return <li className="poki-typing grassThree">{type.type.name}</li>;
           })}
         </div>
-        {/* should recieve image from fetch */}
         <div className="poki-image-container">
           <img alt="poki" src={pokemon.sprites.front_default}></img>
         </div>
