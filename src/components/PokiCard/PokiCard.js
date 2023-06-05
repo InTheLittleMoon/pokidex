@@ -4,8 +4,7 @@ import "./PokiCard.css";
 export default function PokiCard({ pokemon }) {
   if (!pokemon) return null;
   return (
-    /* needs to dynamically add background color based off primary typing */
-    <div className="pokicard-container grass">
+    <div className={`pokicard-container ${pokemon.types[0].type.name}`}>
       <div className="upper-pokicard">
         <div className="pkName">{pokemon.name}</div>
         {/* needs to dynamically add font color based off primary typing */}
