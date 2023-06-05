@@ -66,7 +66,6 @@ function App() {
     fetchKantoPokemon();
   }, []);
 
-  console.log("pokeArray", pokiArray);
   return (
     <div className="App">
       <Sidebar pokiArray={pokiArray} handleInput={handleInput} />
