@@ -5,7 +5,7 @@ export default function PokiCard({ pokemon }) {
   if (!pokemon) return null;
   //temp for pkTypings array displayed on card
   return (
-    <div className="pokicard-container grass">
+    <div className={`pokicard-container ${pokemon.types[0].type.name}`}>
       <div className="upper-pokicard">
         {/* should recieve name from fetch */}
         <div className="pkName">{pokemon.name}</div>
