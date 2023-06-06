@@ -8,3 +8,7 @@
   margin-top: -2vh;
   z-index: -1;
 }
+
+.random-displayed-pokemon-container img {
+  height: 100%;
+}
