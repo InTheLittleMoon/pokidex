@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
+
 import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
+import UserFavorites from "./UserFavorites.js";
 import Display from "./Display.js";
 import "./App.css";
 
@@ -8,12 +12,12 @@ function App() {
   //held states
   const [pokiArray, setPokiArray] = useState([]);
   const [filteredPokiArray, setFilteredPokiArray] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  //const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
 
   async function fetchKantoPokemon() {
-    //limited to the first 151
     const pokemonArray = await fetch(
+      //limited to the first 151
       "https://pokeapi.co/api/v2/pokemon?limit=151"
     )
       .then((response) => response.json())
@@ -69,7 +73,18 @@ function App() {
   return (
     <div className="App">
       <Sidebar pokiArray={pokiArray} handleInput={handleInput} />
-      <Main filteredPokiArray={filteredPokiArray} />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Main filteredPokiArray={filteredPokiArray} />
+          </Route>
+          {/* user should be dynamic id */}
+          <Route path="/user/fav">
+            <UserFavorites />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
       <Display selectedPokemon={filteredPokiArray} />
     </div>
   );
