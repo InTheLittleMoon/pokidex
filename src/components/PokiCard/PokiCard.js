@@ -9,7 +9,9 @@ export default function PokiCard({ pokemon, handleOnClick }) {
       className={`pokicard-container ${pokemon.types[0].type.name}`}
     >
       <div className="upper-pokicard">
-        <div className="pkName">{pokemon.name}</div>
+        <div className="pkName">{`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(
+          1
+        )}`}</div>
         <div className={`pkID ${pokemon.types[0].type.name}Two`}>
           {pokemon.id}
         </div>

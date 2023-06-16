@@ -16,7 +16,9 @@ export default function Display({ selectedPokemon }) {
       <div className={`display ${selectedPokemon.types[0].type.name}`}>
         <div className="container">
           <div className="infoBar">
-            <div className="title">{selectedPokemon.name}</div>
+            <div className="title">{`${selectedPokemon.name[0].toUpperCase()}${selectedPokemon.name.slice(
+              1
+            )}`}</div>
             <div className="poki-typings-container-display">
               {selectedPokemon.types.map((type) => {
                 return (
