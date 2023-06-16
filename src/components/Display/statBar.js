@@ -12,7 +12,6 @@ export default function StatBar({ stat }) {
   } else {
     statName = `${statName[0][0].toUpperCase()}${statName[0].slice(1)}`;
   }
-  console.log("statname", statName);
   return (
     <div className="statBar">
       <div className="statBar-labels">
