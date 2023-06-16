@@ -11,6 +11,18 @@ import RandomDisplayedPokemon from "./components/Random-Displayed-Pokemon/Random
 export default function Sidebar({ pokiArray, search, handleInput }) {
   return (
     <div className="sidebar-container">
+      {/* should disappear once logged in / have sign out options once logged in too */}
+      <div className="login-container">
+        <div className="login-upper">
+          <span>Sign up and save your favorites!</span>
+          <button>Sign Up</button>
+        </div>
+        <div className="login-lower">
+          <span>Already a member?</span>
+          <button>Log In</button>
+        </div>
+      </div>
+
       <div className="sidebar-searchbar-container">
         <h1>
           What Pokémon
