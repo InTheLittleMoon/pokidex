@@ -18,7 +18,10 @@ export default function PokiCard({ pokemon, handleOnClick }) {
         <div className="poki-typings-container">
           {pokemon.types.map((type) => {
             return (
-              <li className={`poki-typing ${pokemon.types[0].type.name}Three`}>
+              <li
+                key={`${pokemon.id}-${pokemon.name}-${type.type.name}`}
+                className={`poki-typing ${pokemon.types[0].type.name}Three`}
+              >
                 {type.type.name}
               </li>
             );

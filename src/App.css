@@ -3,3 +3,7 @@
   padding: 0%;
   display: flex;
 }
+
+p, h5 {
+  margin: 0;
+}

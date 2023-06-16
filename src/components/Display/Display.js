@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import StatBar from "./statBar";
 import "./Display.css";
 
 export default function Display({ selectedPokemon }) {
+  const [show, setShow] = useState(null);
+  useEffect(() => {
+    if (selectedPokemon?.name) setShow(null);
+    setTimeout(() => {
+      setShow("wrapper");
+    }, 100);
+  }, [selectedPokemon]);
+
   if (selectedPokemon) {
-    console.log("selectedPokemon", selectedPokemon);
     return (
       <div className={`display ${selectedPokemon.types[0].type.name}`}>
         <div className="container">
@@ -13,6 +21,7 @@ export default function Display({ selectedPokemon }) {
               {selectedPokemon.types.map((type) => {
                 return (
                   <li
+                    key={`${selectedPokemon.id}-${selectedPokemon.name}-${type.type.name}`}
                     className={`poki-typing-display ${selectedPokemon.types[0].type.name}Three`}
                   >
                     {type.type.name}
@@ -25,7 +34,13 @@ export default function Display({ selectedPokemon }) {
             <img alt="poki" src={selectedPokemon.sprites.front_default} />
           </div>
         </div>
-        <div className="paper"></div>
+        <div className={`paper ${show}`}>
+          <div className="stats-container">
+            {selectedPokemon.stats.map((stat) => (
+              <StatBar stat={stat} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

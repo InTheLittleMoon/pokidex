@@ -12,7 +12,11 @@ export default ({ filteredPokiArray, setSelectedPokemon }) => {
     <div className="main-container">
       <div className="results-container">
         {filteredPokiArray.map((pokemon) => (
-          <PokiCard handleOnClick={handleOnClick} pokemon={pokemon} />
+          <PokiCard
+            handleOnClick={handleOnClick}
+            pokemon={pokemon}
+            key={pokemon.id}
+          />
         ))}
       </div>
     </div>

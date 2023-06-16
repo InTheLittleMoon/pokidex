@@ -57,6 +57,7 @@
 }
 
 .poki-image-container-display {
+  left: 50%;
   transform: translate(-50%);
   position: absolute;
   z-index: 1;
@@ -64,4 +65,34 @@
 
 .poki-image-container-display img {
   height: 40vh;
+}
+
+.stats-container {
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 10%;
+}
+
+.statBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.statBar-labels {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  justify-content: space-between;
+}
+
+.statBar-line {
+  display: flex;
+  align-items: center;
+  width: 55%;
+}
+
+.statBar-fill {
+  height: 2px;
+  background-color: green;
 }

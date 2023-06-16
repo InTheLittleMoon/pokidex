@@ -5,7 +5,7 @@ export default function RandomDisplayedPokemon({ pokiArray }) {
   const [displayedPokimon, setDisplayedPokimon] = useState(null);
   useEffect(() => {
     const interval = setInterval(() => {
-      let temp = Math.floor(Math.random() * 152);
+      let temp = Math.floor(Math.random() * 151);
       if (temp === 0) {
         temp = 1;
       }

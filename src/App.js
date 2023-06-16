@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
 import UserFavorites from "./UserFavorites.js";
-import Display from "./Display.js";
+import Display from "./components/Display/Display.js";
 import "./App.css";
 
 function App() {
