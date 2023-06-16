@@ -12,7 +12,7 @@ function App() {
   //held states
   const [pokiArray, setPokiArray] = useState([]);
   const [filteredPokiArray, setFilteredPokiArray] = useState([]);
-  //const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
 
   async function fetchKantoPokemon() {
@@ -76,7 +76,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Main filteredPokiArray={filteredPokiArray} />
+            <Main
+              filteredPokiArray={filteredPokiArray}
+              setSelectedPokemon={setSelectedPokemon}
+            />
           </Route>
           {/* user should be dynamic id */}
           <Route path="/user/fav">
@@ -85,7 +88,7 @@ function App() {
           <Redirect to="/" />
         </Switch>
       </Router>
-      <Display selectedPokemon={filteredPokiArray} />
+      <Display selectedPokemon={selectedPokemon} />
     </div>
   );
 }

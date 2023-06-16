@@ -1,10 +1,13 @@
 import React from "react";
 import "./PokiCard.css";
 
-export default function PokiCard({ pokemon }) {
+export default function PokiCard({ pokemon, handleOnClick }) {
   if (!pokemon) return null;
   return (
-    <div className={`pokicard-container ${pokemon.types[0].type.name}`}>
+    <div
+      onClick={() => handleOnClick(pokemon)}
+      className={`pokicard-container ${pokemon.types[0].type.name}`}
+    >
       <div className="upper-pokicard">
         <div className="pkName">{pokemon.name}</div>
         <div className={`pkID ${pokemon.types[0].type.name}Two`}>
