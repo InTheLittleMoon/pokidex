@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 
@@ -14,6 +14,7 @@ function App() {
   const [filteredPokiArray, setFilteredPokiArray] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
+  const element = useRef();
 
   async function fetchKantoPokemon() {
     const pokemonArray = await fetch(
@@ -49,12 +50,9 @@ function App() {
       setTimeout(() => {
         setFilteredPokiArray(
           pokiArray.filter((pokemon) => {
-            console.log(
-              "query",
-              query.toUpperCase(),
-              pokemon.name.toUpperCase()
-            );
-            if (query.toUpperCase() === pokemon.name.toUpperCase()) {
+            const pokemonName = pokemon.name.toUpperCase();
+            const queryName = query.toUpperCase();
+            if (pokemonName.includes(queryName)) {
               return {
                 name: pokemon.name,
               };
