@@ -8,14 +8,14 @@ import magnifyingGlassIcon from "./assets/images/sidebar-searchbar-icon.png";
 import FilterOption from "./components/Sidebar-Filter-Options/Sidebar-Filter-Options";
 import RandomDisplayedPokemon from "./components/Random-Displayed-Pokemon/Random-Displayed-Pokemon";
 
-export default function Sidebar({ pokiArray, search, handleInput }) {
+export default function Sidebar({ pokiArray, handleInput, setShowModal }) {
   return (
     <div className="sidebar-container">
       {/* should disappear once logged in / have sign out options once logged in too */}
       <div className="login-container">
         <div className="login-upper">
           <span>Sign up and save your favorites!</span>
-          <button>Sign Up</button>
+          <button onClick={() => setShowModal(true)}>Sign Up</button>
         </div>
         <div className="login-lower">
           <span>Already a member?</span>

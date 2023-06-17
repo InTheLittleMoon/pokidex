@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
 import UserFavorites from "./UserFavorites.js";
 import Display from "./components/Display/Display.js";
+import Modal from "./components/Modal/Modal.js";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [filteredPokiArray, setFilteredPokiArray] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [timer, setTimer] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const element = useRef();
 
   async function fetchKantoPokemon() {
@@ -70,7 +72,12 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar pokiArray={pokiArray} handleInput={handleInput} />
+      <Sidebar
+        pokiArray={pokiArray}
+        handleInput={handleInput}
+        setShowModal={setShowModal}
+      />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
       <Router>
         <Switch>
           <Route path="/" exact>
