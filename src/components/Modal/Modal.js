@@ -9,9 +9,9 @@ export default function Modal({ showModal, setShowModal }) {
   const [userError, setUserError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [confirmError, setConfirmError] = useState(null);
+  const [timer, setTimer] = useState(null);
 
   useEffect(() => {
-    console.log("password", password);
     if (password.length && passwordConfirm.length) {
       if (password !== passwordConfirm) {
         setPasswordError(false);
@@ -23,26 +23,32 @@ export default function Modal({ showModal, setShowModal }) {
     }
   }, [password, passwordConfirm]);
 
-  useEffect(() => {
-    const promise = fetch("http://localhost:8000/checkUsername", {
-      method: "POST",
-      body: JSON.stringify({
-        username,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }).then((res) => {
-      return res.json();
-    });
-    promise.then((res) => {
-      if (res) {
-        setUserError(false);
-      } else {
-        setUserError(true);
-      }
-    });
-  }, [username]);
+  const handleOnChange = (e) => {
+    if (timer) clearTimeout(timer);
+    setUsername(e);
+    if (e === "") {
+      setUserError(null);
+      return;
+    }
+    setTimer(
+      setTimeout(() => {
+        const promise = fetch("http://localhost:8000/checkUsername", {
+          method: "POST",
+          body: JSON.stringify({
+            username: e,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }).then((res) => {
+          return res.json();
+        });
+        promise.then((res) => {
+          setUserError(res);
+        });
+      }, 500)
+    );
+  };
 
   if (!showModal) return null;
   const handleOnClick = (e) => {
@@ -55,7 +61,7 @@ export default function Modal({ showModal, setShowModal }) {
         <div className="input-container">
           <input
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => handleOnChange(e.target.value)}
           />
           <Mark status={userError} />
         </div>
