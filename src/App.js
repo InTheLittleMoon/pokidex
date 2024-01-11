@@ -21,7 +21,7 @@ function App() {
   async function fetchKantoPokemon() {
     const pokemonArray = await fetch(
       //limited to the first 151
-      "https://pokeapi.co/api/v2/pokemon?limit=151"
+      "https://pokeapi.co/api/v2/pokemon?limit=151" 
     )
       .then((response) => response.json())
       .then((allpokemon) => {
